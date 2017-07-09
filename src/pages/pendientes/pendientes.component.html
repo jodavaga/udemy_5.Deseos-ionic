@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Pendientes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card *ngFor="let lista of _listaDeseos.listas">
+
+      <ion-card-header>
+        {{lista.nombre}}
+      </ion-card-header>
+
+      <ion-card-content>
+        <!-- Add card content here! -->
+        lsita de items
+      </ion-card-content>
+
+    </ion-card> 
+
+    <ion-fab right bottom>
+    <button (click)="irAgregar()"
+          ion-fab color="primary">
+         <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    </button>
+    <ion-fab-list side="left">
+      <!--<button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>-->
+    </ion-fab-list>
+  </ion-fab>    
+
+</ion-content>
