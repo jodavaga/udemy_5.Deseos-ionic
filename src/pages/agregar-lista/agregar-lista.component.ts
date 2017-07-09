@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ListaItem, Lista } from "../../app/clases/index";
+import { ListaDeseosService } from "../../app/services/lista-deseos.service";
 
-import { AlertController } from 'ionic-angular';
+import { AlertController, NavController } from 'ionic-angular';
 
 @Component({
     selector: 'app-agregar-lista',
@@ -14,10 +15,12 @@ export class AgregarlistaComponent implements OnInit {
     nombreItem: string = "";
 
     items: ListaItem[] = [];
-
-    lista: Lista; 
     
-    constructor( public alertCtrl: AlertController ) { }
+    constructor( 
+        public alertCtrl: AlertController,
+        public navCtrl: NavController,
+        public _listaDeseos:ListaDeseosService
+    ) { }
 
     ngOnInit() { }
 
@@ -39,7 +42,7 @@ export class AgregarlistaComponent implements OnInit {
         this.items.splice(idx, 1);
     }
 
-    agregarLista(){
+    guardarLista(){
         
         if (this.nombreLista.length == 0){ 
             let alert = this.alertCtrl.create({
@@ -48,8 +51,16 @@ export class AgregarlistaComponent implements OnInit {
             buttons: ['OK']
             });
             alert.present();
-
+            return;
         }
+
+        let lista = new Lista( this.nombreLista );
+        lista.items = this.items;
+        // this._listaDeseos.listas.push( lista );
+        this._listaDeseos.agregarlista( lista );
+        
+        this.navCtrl.pop();
+
     }
 
     
